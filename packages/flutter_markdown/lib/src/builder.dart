@@ -327,13 +327,31 @@ class MarkdownBuilder implements md.NodeVisitor {
       child = builders[_blocks.last.tag!]!
           .visitText(text, styleSheet.styles[_blocks.last.tag!]);
     } else if (_blocks.last.tag == 'pre') {
-      child = Scrollbar(
-        child: SingleChildScrollView(
-          scrollDirection: Axis.horizontal,
+      bool hnbNeedWrap = false;
+      final Decoration? hnbDecoration = styleSheet.codeblockDecoration;
+      if (hnbDecoration != null) {
+        if (hnbDecoration is BoxDecoration) {
+          final int? hnbColorAlpha = hnbDecoration.color?.alpha;
+          if (hnbColorAlpha == 1 || hnbColorAlpha == 254) {
+            hnbNeedWrap = true;
+          }
+        }
+      }
+
+      if (hnbNeedWrap) {
+        child = Container(
           padding: styleSheet.codeblockPadding,
           child: _buildRichText(delegate.formatText(styleSheet, text.text)),
-        ),
-      );
+        );
+      } else {
+        child = Scrollbar(
+          child: SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            padding: styleSheet.codeblockPadding,
+            child: _buildRichText(delegate.formatText(styleSheet, text.text)),
+          ),
+        );
+      }
     } else {
       child = _buildRichText(
         TextSpan(
