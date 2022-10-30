@@ -40,6 +40,7 @@ class MarkdownStyleSheet {
     this.tableHeadAlign,
     this.tableBorder,
     this.tableColumnWidth,
+    this.tableColumnWidthsMap,
     this.tableCellsPadding,
     this.tableCellsDecoration,
     this.blockquotePadding,
@@ -360,6 +361,7 @@ class MarkdownStyleSheet {
     TextAlign? tableHeadAlign,
     TableBorder? tableBorder,
     TableColumnWidth? tableColumnWidth,
+    Map<int, TableColumnWidth>? tableColumnWidthsMap,
     EdgeInsets? tableCellsPadding,
     Decoration? tableCellsDecoration,
     EdgeInsets? blockquotePadding,
@@ -412,6 +414,7 @@ class MarkdownStyleSheet {
       tableHeadAlign: tableHeadAlign ?? this.tableHeadAlign,
       tableBorder: tableBorder ?? this.tableBorder,
       tableColumnWidth: tableColumnWidth ?? this.tableColumnWidth,
+      tableColumnWidthsMap: tableColumnWidthsMap ?? this.tableColumnWidthsMap,
       tableCellsPadding: tableCellsPadding ?? this.tableCellsPadding,
       tableCellsDecoration: tableCellsDecoration ?? this.tableCellsDecoration,
       blockquotePadding: blockquotePadding ?? this.blockquotePadding,
@@ -473,6 +476,7 @@ class MarkdownStyleSheet {
       tableHeadAlign: other.tableHeadAlign,
       tableBorder: other.tableBorder,
       tableColumnWidth: other.tableColumnWidth,
+      tableColumnWidthsMap: other.tableColumnWidthsMap,
       tableCellsPadding: other.tableCellsPadding,
       tableCellsDecoration: other.tableCellsDecoration,
       blockquotePadding: other.blockquotePadding,
@@ -588,6 +592,9 @@ class MarkdownStyleSheet {
   /// The [TableColumnWidth] to use for `th` and `td` elements.
   final TableColumnWidth? tableColumnWidth;
 
+  /// HNB: Use for each column
+  final Map<int, TableColumnWidth>? tableColumnWidthsMap;
+
   /// The padding to use for `th` and `td` elements.
   final EdgeInsets? tableCellsPadding;
 
@@ -690,6 +697,7 @@ class MarkdownStyleSheet {
         other.tableHeadAlign == tableHeadAlign &&
         other.tableBorder == tableBorder &&
         other.tableColumnWidth == tableColumnWidth &&
+        other.tableColumnWidthsMap == tableColumnWidthsMap &&
         other.tableCellsPadding == tableCellsPadding &&
         other.tableCellsDecoration == tableCellsDecoration &&
         other.blockquotePadding == blockquotePadding &&
@@ -746,6 +754,7 @@ class MarkdownStyleSheet {
       tableHeadAlign,
       tableBorder,
       tableColumnWidth,
+      tableColumnWidthsMap,
       tableCellsPadding,
       tableCellsDecoration,
       blockquotePadding,

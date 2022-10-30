@@ -435,6 +435,7 @@ class MarkdownBuilder implements md.NodeVisitor {
         }
       } else if (tag == 'table') {
         child = Table(
+          columnWidths: styleSheet.tableColumnWidthsMap,
           defaultColumnWidth: styleSheet.tableColumnWidth!,
           defaultVerticalAlignment: TableCellVerticalAlignment.middle,
           border: styleSheet.tableBorder,
